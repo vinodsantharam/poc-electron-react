@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import DateSelection from './Components/DateSelection';
-import Welcome from './Components/Welcome';
+import Home from './Components/Home';
 import ReactDOM from 'react-dom';
+import { browserHistory } from 'react-router';
+
 
 import logo from './logo.svg';
 import './App.css';
@@ -23,17 +25,11 @@ constructor(props) {
 
 
  navigateToStep2() {
-            ReactDOM.render(
-            <DateSelection />,
-            document.getElementById('content')
-            );
+           browserHistory.push('/dateselection');
     }
 
  navigateToWelcomePage() {
-            ReactDOM.render(
-            <Welcome />,
-            document.getElementById('content')
-            );
+            browserHistory.push('/');
  }
 
   render() {
@@ -42,7 +38,7 @@ constructor(props) {
         <Header/>
         <div id='content'>
           <p className="App-intro">
-            <Welcome/>
+            {this.props.children}
           </p>
         </div>  
         <Footer navigateToWelcomePage={this.navigateToWelcomePage} navigateToStep2={this.navigateToStep2}/>

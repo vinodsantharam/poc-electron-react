@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DateSelection from './DateSelection';
-import Welcome from './Welcome';
+import Home from './Home';
 import ReactDOM from 'react-dom';
 
 class Footer extends Component {
@@ -24,7 +24,7 @@ constructor(props) {
                     Back
                 </button>
                 <button onClick={this.navigateToStep2} style={{width: 50, height: 50, backgroundColor: 'steelblue'}}>
-                    Next
+                        Next
                 </button>
             </div>
         );
