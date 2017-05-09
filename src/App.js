@@ -5,6 +5,9 @@ import ParamenterSelector from './Components/ParameterSelector';
 import Result from './Components/Result';
 import Header from './Components/Header';
 import './App.css';
+import BaseData from './Data/base.js';
+import Person from './Data/person.js';
+
 
 class App extends Component {
   constructor() {
@@ -14,7 +17,8 @@ class App extends Component {
       beginDate: '',
       endDate: '',
       numberOfEmployees: '',
-      parameter2: ''
+      parameter2: '',
+      dataToSend: ''
     };
   }
 
@@ -50,7 +54,7 @@ class App extends Component {
   }
 
   renderHome() {
-    return (
+   return (
       <Home/>
     );
   }
@@ -81,7 +85,9 @@ class App extends Component {
          beginDate={this.state.beginDate}
          endDate={this.state.endDate}
          numberOfEmployees={this.state.numberOfEmployees}
-         parameter2={this.state.parameter2} />
+         parameter2={this.state.parameter2}
+         dataToSend={this.state.dataToSend}
+          />
     )
   }
 
@@ -108,7 +114,7 @@ class App extends Component {
       case 1:
         return <button type="button" onClick={this.goToNextStep}>Next</button>;
       case 2:
-        return <button type="button" onClick={this.goToNextStep}>Calculate</button>;
+        return <button type="button" onClick={this.calculate}>Calculate</button>;
       case 3:
         return <button type="button" onClick={this.restart}>Restart</button>;
       default:
@@ -126,6 +132,11 @@ class App extends Component {
 
   restart = () => {
     this.setState({ step: 0 });
+  }
+
+  calculate = () => {
+    this.setState({ dataToSend: BaseData + Person}) // to test only
+    this.setState(previousState => ({ step: previousState.step + 1}));
   }
 }
 

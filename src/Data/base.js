@@ -1,3 +1,4 @@
+const BaseData = `
 <?xml version="1.0" encoding="UTF-8"?>
 <ns4:DeclareSalaryConsumer
         xmlns:ns2="http://www.swissdec.ch/schema/sd/20130514/SalaryDeclarationContainer"
@@ -207,4 +208,6 @@
         </ns2:SalaryDeclaration>
     </DeclareSalary>
 </ns4:DeclareSalaryConsumer>
+`;
 
+export default BaseData;

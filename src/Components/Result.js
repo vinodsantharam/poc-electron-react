@@ -9,6 +9,7 @@ class Result extends Component {
             <div>{this.props.endDate}</div>
             <div>{this.props.numberOfEmployees}</div>
             <div>{this.props.parameter2}</div>
+            <div>{this.props.dataToSend}</div>
         </div>
         );
     }
