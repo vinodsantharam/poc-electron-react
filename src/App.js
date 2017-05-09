@@ -1,49 +1,142 @@
 import React, { Component } from 'react';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import DateSelection from './Components/DateSelection';
-import Home from './Components/Home';
-import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router';
-
-
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-
-
-constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      isGoing: true
+      step: 0,
+      date1: '',
+      date2: '',
+      value1: '',
+      value2: ''
     };
-
-    this.navigateToWelcomePage = this.navigateToWelcomePage.bind(this);
-    this.navigateToStep2 = this.navigateToStep2.bind(this);
   }
-
-
- navigateToStep2() {
-           browserHistory.push('/dateselection');
-    }
-
- navigateToWelcomePage() {
-            browserHistory.push('/');
- }
 
   render() {
     return (
       <div className="App">
-        <Header/>
-        <div id='content'>
-          <p className="App-intro">
-            {this.props.children}
-          </p>
-        </div>  
-        <Footer navigateToWelcomePage={this.navigateToWelcomePage} navigateToStep2={this.navigateToStep2}/>
+        {
+          this.renderHeader()
+        }
+        {
+          this.renderContent()
+        }
+        {
+          this.renderBottomBar()
+        }
       </div>
     );
+  }
+
+  renderContent() {
+    switch(this.state.step) {
+      case 0:
+        return this.renderHome();
+      case 1:
+        return this.renderStep1();
+      case 2:
+        return this.renderStep2();
+      case 3:
+        return this.renderStep3();
+      default:
+        throw new Error("Invalid step");
+    }
+  }
+
+  renderHome() {
+    return (
+      <div>
+        Home blabla bla
+      </div>
+    );
+  }
+
+  renderStep1() {
+    return (
+      <div>
+        Begin
+        <input type="date" name="date1" value={this.state.date1} onChange={this.onDateChange}/>
+        end
+        <input type="date" name="date2" value={this.state.date2} onChange={this.onDateChange}/>
+      </div>
+    );
+  }
+
+  onDateChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  renderStep2() {
+    return (
+      <div>
+        <input type="text" name="value1" value={this.state.value1} onChange={this.onValueChange}/>
+        <input type="text" name="value2" value={this.state.value2} onChange={this.onValueChange}/>
+      </div>
+    );
+  }
+
+  onValueChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  renderStep3() {
+    return (
+      <div>
+        <h2>Result</h2>
+        <div>{this.state.date1}</div>
+        <div>{this.state.date2}</div>
+        <div>{this.state.value1}</div>
+        <div>{this.state.value2}</div>
+      </div>
+    )
+  }
+
+  renderBottomBar() {
+    return (
+      <div>
+        {
+          this.state.step > 0 && <button type="button" onClick={this.goToPreviousStep}>Previous</button>
+        }
+        {
+          this.renderNextButton(this.state.step)
+        }
+      </div>
+    )
+  }
+
+  renderHeader() {
+    if(this.state.step === 0) {
+      return <h1>Header</h1>;
+    }
+
+    return <h1>Title {this.state.step}</h1>;
+  }
+
+  renderNextButton(step) {
+    switch(step) {
+      case 0:
+      case 1:
+        return <button type="button" onClick={this.goToNextStep}>Next</button>;
+      case 2:
+        return <button type="button" onClick={this.goToNextStep}>Calculate</button>;
+      case 3:
+        return <button type="button" onClick={this.restart}>Restart</button>;
+      default:
+        throw new Error("Invalid step");
+    }
+  }
+
+  goToPreviousStep = () => {
+    this.setState(previousState => ({ step: previousState.step - 1}))
+  }
+
+  goToNextStep = () => {
+    this.setState(previousState => ({ step: previousState.step + 1}));
+  }
+
+  restart = () => {
+    this.setState({ step: 0 });
   }
 }
 
