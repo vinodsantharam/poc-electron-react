@@ -3,6 +3,7 @@ import Home from './Components/Home';
 import DateSelector from './Components/DateSelector'
 import ParamenterSelector from './Components/ParameterSelector';
 import Result from './Components/Result';
+import Header from './Components/Header';
 import './App.css';
 
 class App extends Component {
@@ -98,11 +99,7 @@ class App extends Component {
   }
 
   renderHeader() {
-    if(this.state.step === 0) {
-      return <h1>Header</h1>;
-    }
-
-    return <h1>Title {this.state.step}</h1>;
+    return <Header step={this.state.step} />;
   }
 
   renderNextButton(step) {
