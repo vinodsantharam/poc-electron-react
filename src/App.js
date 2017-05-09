@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Home from './Components/Home';
 import DateSelector from './Components/DateSelector'
+import ParamenterSelector from './Components/ParameterSelector';
 import './App.css';
 
 class App extends Component {
@@ -10,8 +11,8 @@ class App extends Component {
       step: 0,
       beginDate: '',
       endDate: '',
-      value1: '',
-      value2: ''
+      numberOfEmployees: '',
+      parameter2: ''
     };
   }
 
@@ -64,10 +65,7 @@ class App extends Component {
 
   renderStep2() {
     return (
-      <div>
-        <input type="text" name="value1" value={this.state.value1} onChange={this.onValueChange}/>
-        <input type="text" name="value2" value={this.state.value2} onChange={this.onValueChange}/>
-      </div>
+      <ParamenterSelector numberOfEmployees={this.state.numberOfEmployees} parameter2={this.state.parameter2} onValueChange={this.onValueChange} />
     );
   }
 
@@ -81,8 +79,8 @@ class App extends Component {
         <h2>Result</h2>
         <div>{this.state.beginDate}</div>
         <div>{this.state.endDate}</div>
-        <div>{this.state.value1}</div>
-        <div>{this.state.value2}</div>
+        <div>{this.state.numberOfEmployees}</div>
+        <div>{this.state.parameter2}</div>
       </div>
     )
   }
