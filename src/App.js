@@ -8,8 +8,8 @@ class App extends Component {
     super();
     this.state = {
       step: 0,
-      date1: '',
-      date2: '',
+      beginDate: '',
+      endDate: '',
       value1: '',
       value2: ''
     };
@@ -54,12 +54,7 @@ class App extends Component {
 
   renderStep1() {
     return (
-      <div>
-        Begin
-        <input type="date" name="date1" value={this.state.date1} onChange={this.onDateChange}/>
-        end
-        <input type="date" name="date2" value={this.state.date2} onChange={this.onDateChange}/>
-      </div>
+       <DateSelector beginDate={this.state.beginDate} endDate={this.state.endDate} onChange={this.onDateChange} />
     );
   }
 
@@ -84,8 +79,8 @@ class App extends Component {
     return (
       <div>
         <h2>Result</h2>
-        <div>{this.state.date1}</div>
-        <div>{this.state.date2}</div>
+        <div>{this.state.beginDate}</div>
+        <div>{this.state.endDate}</div>
         <div>{this.state.value1}</div>
         <div>{this.state.value2}</div>
       </div>
