@@ -26,5 +26,15 @@
         <ns3:ActivityRate>99</ns3:ActivityRate>
         <ns3:EntryDate>2007-05-01</ns3:EntryDate>
     </ns3:Work>
-    
+    <ns3:UVGZ-LAAC-Salaries>
+        <ns3:UVGZ-LAAC-Salary institutionIDRef="#Backwork">
+            <ns3:AccountingTime>
+                <ns3:from>2016-10-01</ns3:from>
+                <ns3:until>2016-12-31</ns3:until>
+            </ns3:AccountingTime>
+            <ns3:UVGZ-LAAC-Code>11</ns3:UVGZ-LAAC-Code>
+            <ns3:UVGZ-LAAC-BaseSalary>65000.00</ns3:UVGZ-LAAC-BaseSalary>
+            <ns3:UVGZ-LAAC-ContributorySalary>65000.00</ns3:UVGZ-LAAC-ContributorySalary>
+        </ns3:UVGZ-LAAC-Salary>
+    </ns3:UVGZ-LAAC-Salaries>
 </ns3:Person>
