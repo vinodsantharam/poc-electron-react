@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Home from './Components/Home';
 import DateSelector from './Components/DateSelector'
 import ParamenterSelector from './Components/ParameterSelector';
+import Result from './Components/Result';
 import './App.css';
 
 class App extends Component {
@@ -75,13 +76,11 @@ class App extends Component {
 
   renderStep3() {
     return (
-      <div>
-        <h2>Result</h2>
-        <div>{this.state.beginDate}</div>
-        <div>{this.state.endDate}</div>
-        <div>{this.state.numberOfEmployees}</div>
-        <div>{this.state.parameter2}</div>
-      </div>
+      <Result
+         beginDate={this.state.beginDate}
+         endDate={this.state.endDate}
+         numberOfEmployees={this.state.numberOfEmployees}
+         parameter2={this.state.parameter2} />
     )
   }
 
