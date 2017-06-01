@@ -8,6 +8,9 @@
 
 # production
 /build
+/run-win32-x64
+run-win32-x64.zip
+
 
 # misc
 .DS_Store
