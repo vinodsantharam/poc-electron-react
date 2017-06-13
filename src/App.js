@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Home from './Components/Home';
 import DateSelector from './Components/DateSelector'
 import ParamenterSelector from './Components/ParameterSelector';
+import ContractSelector from './Components/ContractSelector';
 import Result from './Components/Result';
 import Header from './Components/Header';
 import './App.css';
@@ -18,7 +19,10 @@ class App extends Component {
       endDate: '',
       numberOfEmployees: '',
       parameter2: '',
-      dataToSend: ''
+      dataToSend: '',
+      hasUVG: false,
+      hasUVG2: false,
+      hasKTG: false,
     };
   }
 
@@ -61,7 +65,7 @@ class App extends Component {
 
   renderStep1() {
     return (
-       <DateSelector beginDate={this.state.beginDate} endDate={this.state.endDate} onChange={this.onDateChange} />
+       <ParamenterSelector numberOfEmployees={this.state.numberOfEmployees} parameter2={this.state.parameter2} onValueChange={this.onValueChange} />
     );
   }
 
@@ -71,9 +75,17 @@ class App extends Component {
 
   renderStep2() {
     return (
-      <ParamenterSelector numberOfEmployees={this.state.numberOfEmployees} parameter2={this.state.parameter2} onValueChange={this.onValueChange} />
+      <ContractSelector
+        hasUVG={this.state.hasUVG} 
+        hasUVG2={this.state.hasUVG2}
+        hasKTG={this.state.hasKTG}
+        onContractTypeChange={this.onContractTypeChange}/>
     );
   }
+
+  onContractTypeChange = event => {
+  this.setState({ [event.target.name]: event.target.checked});
+}
 
   onValueChange = event => {
     this.setState({ [event.target.name]: event.target.value });
