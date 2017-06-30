@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class ContractSelector extends Component{
+class ContractTypeSelector extends Component{
 
     render(props){
         return(
@@ -40,4 +40,4 @@ class ContractSelector extends Component{
     }
 }
 
-export default ContractSelector;
+export default ContractTypeSelector;

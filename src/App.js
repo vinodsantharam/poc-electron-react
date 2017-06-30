@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Home from './Components/Home';
 import DateSelector from './Components/DateSelector'
 import ParamenterSelector from './Components/ParameterSelector';
-import ContractSelector from './Components/ContractSelector';
+import ContractSelector from './Components/ContractTypeSelector';
+import SetupContract from './Components/SetupContract';
 import Result from './Components/Result';
 import Header from './Components/Header';
 import './App.css';
@@ -23,7 +24,18 @@ class App extends Component {
       hasUVG: false,
       hasUVG2: false,
       hasKTG: false,
+      UVGContracts: [{
+        value:'A1',
+        numberOfEmployees:50
+      },{
+        value:'A2',
+        numberOfEmployees:10
+      }],
+      UVG2Contracts: [],
+      KTGContracts: []
     };
+
+    this.onUVGContractChanged = this.onUVGContractChanged.bind(this);
   }
 
   render() {
@@ -52,6 +64,8 @@ class App extends Component {
         return this.renderStep2();
       case 3:
         return this.renderStep3();
+      case 4:
+        return this.renderStep4();
       default:
         throw new Error("Invalid step");
     }
@@ -91,7 +105,35 @@ class App extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  onUVGContractChanged (value, index) {
+    // change the state here
+
+ //   alert(value + '-' + index)
+
+    this.setState((prevState, props) => {
+
+        var prevStateUVG = prevState.UVGContracts;
+        var contract = prevStateUVG[index];
+        contract.value = value
+
+        return {UVGContracts: prevStateUVG};
+    });
+  }
+
   renderStep3() {
+    return (
+            <SetupContract
+              hasKTG={this.state.hasKTG} 
+              hasUVG={this.state.hasUVG}
+              hasUVG2={this.state.hasUVG2}
+              step={this.state.step}
+              UVGContracts={this.state.UVGContracts}
+              onUVGContractChanged={this.onUVGContractChanged}
+              />
+    );
+  }
+
+  renderStep4() {
     return (
       <Result
          beginDate={this.state.beginDate}
@@ -100,7 +142,7 @@ class App extends Component {
          parameter2={this.state.parameter2}
          dataToSend={this.state.dataToSend}
           />
-    )
+    );
   }
 
   renderBottomBar() {
@@ -126,8 +168,10 @@ class App extends Component {
       case 1:
         return <button type="button" onClick={this.goToNextStep}>Next</button>;
       case 2:
-        return <button type="button" onClick={this.calculate}>Calculate</button>;
+       return <button type="button" onClick={this.goToNextStep}>Next</button>;
       case 3:
+        return <button type="button" onClick={this.calculate}>Calculate</button>;
+      case 4:
         return <button type="button" onClick={this.restart}>Restart</button>;
       default:
         throw new Error("Invalid step");
