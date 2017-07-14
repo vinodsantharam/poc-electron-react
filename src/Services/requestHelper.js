@@ -1,7 +1,3 @@
-
-
-function getBaseRequest(){
-
-
-    return '';
+function getBaseRequest() {
+  return "";
 }
